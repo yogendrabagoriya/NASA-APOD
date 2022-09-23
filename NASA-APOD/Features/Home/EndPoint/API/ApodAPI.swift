@@ -11,5 +11,5 @@ protocol ApodAPI: AnyObject{
     typealias Result = APIResult<Apod>
     typealias Completion = ((Result)->())
     
-    func getPicture(body: [String: String], completion: @escaping Completion)
+    func getPicture(queryParam: [String: String], completion: @escaping Completion)
 }

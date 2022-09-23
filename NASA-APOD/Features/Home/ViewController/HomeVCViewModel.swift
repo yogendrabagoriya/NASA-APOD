@@ -24,8 +24,9 @@ class HomeVCViewModel{
 
 
 extension HomeVCViewModel: HomeVCViewModelProtocol{
-    func fetchPictureOfDay() {
-        self.api?.getPicture(body: [:], completion: {[weak self] result in
+    
+    func fetchPictureOfDay(queryParam: [String: String]) {
+        self.api?.getPicture(queryParam: queryParam, completion: {[weak self] result in
             switch result{
             case .success(let apod):
                 self?.presenter?.apodHandler(apod: apod)

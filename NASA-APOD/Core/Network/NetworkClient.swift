@@ -12,4 +12,5 @@ protocol NetworkClient: AnyObject{
     typealias Result = Swift.Result<(Data, HTTPURLResponse), Swift.Error>
     
     func get(from url: URL, completionHandler: @escaping (Result) -> Void)
+    func download(from fileUrl: URL, completionHandler: @escaping (NetworkClient.Result) -> Void)
 }

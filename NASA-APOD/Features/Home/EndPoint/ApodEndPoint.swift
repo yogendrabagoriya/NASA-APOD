@@ -9,13 +9,15 @@ import Foundation
 
 struct ApodEndPoint{
     
-    static func getApodEndpoint() -> Endpoint {
+    static func getApodEndpoint(querParam: [String: String]) -> Endpoint {
         let config = AppSetup.shared.apiSetting!.endPoints.apod
+        var temp = querParam
+        temp.updateValue(AppSetup.shared.apiSetting!.apiKey, forKey: APIParams.accessKey)
         
         let ep = Endpoint(scheme: config.scheme,
                           host: config.host,
                           path: config.path,
-                          queryItem: [APIParams.accessKey : AppSetup.shared.apiSetting!.apiKey])
+                          queryItem: temp)
         return ep
         
     }

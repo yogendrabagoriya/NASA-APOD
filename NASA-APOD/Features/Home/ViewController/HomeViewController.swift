@@ -8,7 +8,7 @@
 import UIKit
 
 protocol HomeVCViewModelProtocol{
-    func fetchPictureOfDay()
+    func fetchPictureOfDay(queryParam: [String: String])
 }
 
 class HomeViewController: NibViewController {
@@ -18,6 +18,7 @@ class HomeViewController: NibViewController {
     @IBOutlet private weak var dateL: UILabel!
     @IBOutlet private weak var explanationTV: UITextView!
     @IBOutlet private weak var titileL: UILabel!
+    @IBOutlet private weak var datePicker: UIDatePicker!
     
     private var apod: Apod?
     private var viewModel: HomeVCViewModelProtocol?
@@ -36,8 +37,11 @@ class HomeViewController: NibViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         navigationItem.title = "APOD"
+        
+        datePicker.maximumDate = Date()
+        
         self.showLoading()
-        self.viewModel?.fetchPictureOfDay()
+        self.viewModel?.fetchPictureOfDay(queryParam: [:])
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,6 +57,8 @@ class HomeViewController: NibViewController {
         self.explanationTV.text = apod.explanation
     }
     
+    // Navigation related methods
+    
     private func addNavigationButton(){
 
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapAction))
@@ -66,8 +72,18 @@ class HomeViewController: NibViewController {
     @objc private func bookmarkButtonTapAction(){
         
     }
-}
+    
+    @IBAction func datePickerAction(sender: UIDatePicker){
+        print(sender.date)
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd" // this is "2022-08-22"
 
+        let dateStr = dateFormatter.string(from: sender.date)
+        
+        self.viewModel?.fetchPictureOfDay(queryParam: ["date" : dateStr])
+    }
+}
 
 extension HomeViewController: HomeVCPresenter{
     func apodHandler(apod: Apod){
@@ -76,8 +92,6 @@ extension HomeViewController: HomeVCPresenter{
         main.async {
             self.hideLoading()
             self.loadUI(by: apod)
-//            self.explanationTV.setNeedsLayout()
-//            self.scrollView.setNeedsLayout()
         }
     }
     
