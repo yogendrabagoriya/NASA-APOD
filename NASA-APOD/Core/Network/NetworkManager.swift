@@ -17,7 +17,7 @@ class NetworkManager: NetworkClient{
     
     func get(from url: URL, completionHandler: @escaping (NetworkClient.Result) -> Void) {
         let task = session.dataTask(with: url) { data, response, error in
-            if let error = error {
+             if let error = error {
                 completionHandler(.failure(error))
             }else if let data = data, let response = response as? HTTPURLResponse {
                 completionHandler(.success((data, response)))

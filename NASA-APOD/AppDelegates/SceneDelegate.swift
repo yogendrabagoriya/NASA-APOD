@@ -11,7 +11,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     
-    private lazy var homeVC = HomeVCComposer.makeHomeVC()
+    private lazy var navigationController = UINavigationController(rootViewController: HomeVCComposer.makeHomeVC())
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let sceneWindow = (scene as? UIWindowScene) else { return }
         AppSetup.shared.initialize()
         window = UIWindow(windowScene: sceneWindow)
-        window?.rootViewController = homeVC
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
 
