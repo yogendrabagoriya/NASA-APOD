@@ -18,6 +18,10 @@ class GSApodAPI{
 }
 
 extension GSApodAPI: ApodAPI{
+    func downloadImage(queryParam: [String : String], completion: @escaping Completion) {
+        
+    }
+    
     func getPicture(queryParam: [String: String], completion: @escaping Completion) {
         let endPoint = ApodEndPoint.getApodEndpoint(querParam: queryParam)
         self.networkManager.get(from: endPoint.url.url!) {[weak self] result in

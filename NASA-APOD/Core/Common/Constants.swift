@@ -14,3 +14,4 @@ enum APIParams {
 
 // DispatchQueue related
 public var main: DispatchQueue { return DispatchQueue.main }
+public var global: DispatchQueue { return DispatchQueue.global()}

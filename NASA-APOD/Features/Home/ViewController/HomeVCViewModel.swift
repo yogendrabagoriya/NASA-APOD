@@ -26,14 +26,16 @@ class HomeVCViewModel{
 extension HomeVCViewModel: HomeVCViewModelProtocol{
     
     func fetchPictureOfDay(queryParam: [String: String]) {
-        self.api?.getPicture(queryParam: queryParam, completion: {[weak self] result in
-            switch result{
-            case .success(let apod):
-                self?.presenter?.apodHandler(apod: apod)
-                
-            case .failure(let info):
-                self?.presenter?.failureHandler(info: info)
-            }
-        })
+        global.async {
+            self.api?.getPicture(queryParam: queryParam, completion: {[weak self] result in
+                switch result{
+                case .success(let apod):
+                    self?.presenter?.apodHandler(apod: apod)
+                    
+                case .failure(let info):
+                    self?.presenter?.failureHandler(info: info)
+                }
+            })
+        }
     }
 }

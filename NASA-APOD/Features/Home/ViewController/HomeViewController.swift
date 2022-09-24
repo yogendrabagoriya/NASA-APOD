@@ -14,7 +14,7 @@ protocol HomeVCViewModelProtocol{
 class HomeViewController: NibViewController {
 
     @IBOutlet private weak var scrollView: UIScrollView!
-    @IBOutlet private weak var spodIV: UIImageView!
+    @IBOutlet private weak var spodIV: LazyImageView!
     @IBOutlet private weak var dateL: UILabel!
     @IBOutlet private weak var explanationTV: UITextView!
     @IBOutlet private weak var titileL: UILabel!
@@ -80,7 +80,7 @@ class HomeViewController: NibViewController {
         dateFormatter.dateFormat = "yyyy-MM-dd" // this is "2022-08-22"
 
         let dateStr = dateFormatter.string(from: sender.date)
-        
+        self.showLoading()
         self.viewModel?.fetchPictureOfDay(queryParam: ["date" : dateStr])
     }
 }
@@ -92,6 +92,7 @@ extension HomeViewController: HomeVCPresenter{
         main.async {
             self.hideLoading()
             self.loadUI(by: apod)
+            self.spodIV.loadImage(from: apod.url, placeholderImage: "nasa")
         }
     }
     
