@@ -9,8 +9,7 @@ import Foundation
 import UIKit
 
 class LazyImageView: UIView{
-    
-//    var contentView:UIView?
+    let nibName = "LazyImageView"
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var loader: UIActivityIndicatorView!
     
@@ -29,17 +28,16 @@ class LazyImageView: UIView{
         guard let view = loadViewFromNib() else { return }
         view.frame = self.bounds
         self.addSubview(view)
-//        contentView = view
     }
     
     func loadViewFromNib() -> UIView? {
         let bundle = Bundle(for: type(of: self))
-        let nib = UINib(nibName: "LazyImageView", bundle: bundle)
+        let nib = UINib(nibName: nibName, bundle: bundle)
         return nib.instantiate(withOwner: self, options: nil).first as? UIView
     }
     
     func loadImage(from imageUrlStr: String, placeholderImage: String){
-        
+        self.imageView.image = nil
         guard let imageUrl = URL(string: imageUrlStr) else {
             return
         }

@@ -36,7 +36,6 @@ class HomeViewController: NibViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        navigationItem.title = "APOD"
         
         datePicker.maximumDate = Date()
         
@@ -46,7 +45,7 @@ class HomeViewController: NibViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.addNavigationButton()
+        self.configureNavigation()
     }
     
     //MARK: - Private methods
@@ -57,10 +56,12 @@ class HomeViewController: NibViewController {
         self.explanationTV.text = apod.explanation
     }
     
-    // Navigation related methods
+    //MARK: - Navigation related methods
     
-    private func addNavigationButton(){
-
+    private func configureNavigation(){
+        navigationItem.title = "APOD"
+        navigationController?.navigationBar.backgroundColor = .systemGray5
+        
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapAction))
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(bookmarkButtonTapAction))
     }
