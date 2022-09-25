@@ -20,6 +20,7 @@ class HomeViewController: NibViewController {
     @IBOutlet private weak var titileL: UILabel!
     @IBOutlet private weak var datePicker: UIDatePicker!
     
+    private var selectedDate: Date?
     private var apod: Apod?
     private var viewModel: HomeVCViewModelProtocol?
     
@@ -76,13 +77,15 @@ class HomeViewController: NibViewController {
     
     @IBAction func datePickerAction(sender: UIDatePicker){
         print(sender.date)
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd" // this is "2022-08-22"
-
-        let dateStr = dateFormatter.string(from: sender.date)
-        self.showLoading()
-        self.viewModel?.fetchPictureOfDay(queryParam: ["date" : dateStr])
+        if selectedDate != sender.date{
+            selectedDate = sender.date
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd" // this is "2022-08-22"
+            
+            let dateStr = dateFormatter.string(from: sender.date)
+            self.showLoading()
+            self.viewModel?.fetchPictureOfDay(queryParam: ["date" : dateStr])
+        }
     }
 }
 
