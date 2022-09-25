@@ -8,11 +8,17 @@
 import Foundation
 import UIKit
 
+protocol LazyImageViewDelegate: AnyObject{
+    func userTapAction()
+}
+
 class LazyImageView: UIView{
+    
     let nibName = "LazyImageView"
-    @IBOutlet private weak var imageView: UIImageView!
+    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet private weak var loader: UIActivityIndicatorView!
     
+    weak var delegate: LazyImageViewDelegate?
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -24,13 +30,24 @@ class LazyImageView: UIView{
         commonInit()
     }
     
-    func commonInit() {
+    private func configureTapGesture(){
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapGestureAction))
+        self.imageView.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func tapGestureAction(sender: UITapGestureRecognizer){
+        print("Gesture selected")
+        self.delegate?.userTapAction()
+    }
+    
+    private func commonInit() {
         guard let view = loadViewFromNib() else { return }
         view.frame = self.bounds
+        self.configureTapGesture()
         self.addSubview(view)
     }
     
-    func loadViewFromNib() -> UIView? {
+    private func loadViewFromNib() -> UIView? {
         let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: nibName, bundle: bundle)
         return nib.instantiate(withOwner: self, options: nil).first as? UIView

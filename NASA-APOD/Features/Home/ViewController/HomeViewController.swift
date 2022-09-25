@@ -36,10 +36,11 @@ class HomeViewController: NibViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
+        self.spodIV.delegate = self
         datePicker.maximumDate = Date()
         
+        // Fetching today's SPOD from server.
         self.showLoading()
         self.viewModel?.fetchPictureOfDay(queryParam: [:])
     }
@@ -57,22 +58,10 @@ class HomeViewController: NibViewController {
         self.explanationTV.text = apod.explanation
     }
     
-    //MARK: - Navigation related methods
-    
+    // Navigation related methods
     private func configureNavigation(){
         navigationItem.title = "APOD"
         navigationController?.navigationBar.backgroundColor = .systemGray5
-        
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapAction))
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(bookmarkButtonTapAction))
-    }
-    
-    @objc private func searchButtonTapAction(){
-        
-    }
-    
-    @objc private func bookmarkButtonTapAction(){
-        
     }
     
     @IBAction func datePickerAction(sender: UIDatePicker){
@@ -85,6 +74,17 @@ class HomeViewController: NibViewController {
             let dateStr = dateFormatter.string(from: sender.date)
             self.showLoading()
             self.viewModel?.fetchPictureOfDay(queryParam: ["date" : dateStr])
+        }
+    }
+}
+
+extension HomeViewController: LazyImageViewDelegate{
+    func userTapAction() {
+        if let imageUrl = self.apod?.hdurl{
+            // Open Image in Large View with HD defination.
+            let vc = ImageVCComposer.makeImageViewController(imageUrlStr: imageUrl)
+            let navController = UINavigationController(rootViewController: vc)
+            self.present(navController, animated: true)
         }
     }
 }

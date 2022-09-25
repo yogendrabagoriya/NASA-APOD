@@ -43,6 +43,9 @@
 		18A7521328DCCCFB00554637 /* LoadingBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A7521228DCCCFB00554637 /* LoadingBehavior.swift */; };
 		18EA7EE828DED8AF00610014 /* LazyImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EA7EE728DED8AF00610014 /* LazyImageView.swift */; };
 		18EA7EEA28DEE00A00610014 /* LazyImageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EA7EE928DEE00A00610014 /* LazyImageView.xib */; };
+		18EA7EEE28E02F8E00610014 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EA7EED28E02F8E00610014 /* ImageViewController.swift */; };
+		18EA7EF028E02FBE00610014 /* ImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EA7EEF28E02FBE00610014 /* ImageViewController.xib */; };
+		18EA7EF228E0453A00610014 /* ImageVCComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EA7EF128E0453A00610014 /* ImageVCComposer.swift */; };
 		94C5582A55247EDDD445FAAD /* Pods_NASA_APOD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B427A00053D97DD3BDD9D59B /* Pods_NASA_APOD.framework */; };
 		DC6BC9B2FB36F95B16B16CF7 /* Pods_NASA_APODTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D1EC9E86D3FD86AF72C8EB5 /* Pods_NASA_APODTests.framework */; };
 		FF7851BE835A9DD30FD1BD49 /* Pods_NASA_APOD_NASA_APODUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7C56DD8EC7D0484F64C6D3 /* Pods_NASA_APOD_NASA_APODUITests.framework */; };
@@ -109,6 +112,9 @@
 		18A7521228DCCCFB00554637 /* LoadingBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingBehavior.swift; sourceTree = "<group>"; };
 		18EA7EE728DED8AF00610014 /* LazyImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyImageView.swift; sourceTree = "<group>"; };
 		18EA7EE928DEE00A00610014 /* LazyImageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LazyImageView.xib; sourceTree = "<group>"; };
+		18EA7EED28E02F8E00610014 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
+		18EA7EEF28E02FBE00610014 /* ImageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageViewController.xib; sourceTree = "<group>"; };
+		18EA7EF128E0453A00610014 /* ImageVCComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageVCComposer.swift; sourceTree = "<group>"; };
 		1C97E9DBC8A803B73B717E6B /* Pods-NASA-APODTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NASA-APODTests.release.xcconfig"; path = "Target Support Files/Pods-NASA-APODTests/Pods-NASA-APODTests.release.xcconfig"; sourceTree = "<group>"; };
 		26886FA59ACA5C8010FFFACE /* Pods-NASA-APOD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NASA-APOD.debug.xcconfig"; path = "Target Support Files/Pods-NASA-APOD/Pods-NASA-APOD.debug.xcconfig"; sourceTree = "<group>"; };
 		7F3B115778CCBAA3F44B52B2 /* Pods-NASA-APOD-NASA-APODUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NASA-APOD-NASA-APODUITests.debug.xcconfig"; path = "Target Support Files/Pods-NASA-APOD-NASA-APODUITests/Pods-NASA-APOD-NASA-APODUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -210,6 +216,7 @@
 		189B358D28DB34A400DA8F26 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				18EA7EEB28E02F6200610014 /* ImageScreen */,
 				189B358E28DB34BE00DA8F26 /* Home */,
 			);
 			path = Features;
@@ -361,6 +368,24 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		18EA7EEB28E02F6200610014 /* ImageScreen */ = {
+			isa = PBXGroup;
+			children = (
+				18EA7EEC28E02F7900610014 /* ViewController */,
+				18EA7EF128E0453A00610014 /* ImageVCComposer.swift */,
+			);
+			path = ImageScreen;
+			sourceTree = "<group>";
+		};
+		18EA7EEC28E02F7900610014 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				18EA7EED28E02F8E00610014 /* ImageViewController.swift */,
+				18EA7EEF28E02FBE00610014 /* ImageViewController.xib */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		6CDA429D0FD227C2E5290FC8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -497,6 +522,7 @@
 				18A751FF28DC6AB100554637 /* APISettings-Debug.plist in Resources */,
 				18A7520128DC6AE100554637 /* APISettings-Release.plist in Resources */,
 				189B356928DB347E00DA8F26 /* LaunchScreen.storyboard in Resources */,
+				18EA7EF028E02FBE00610014 /* ImageViewController.xib in Resources */,
 				189B356628DB347E00DA8F26 /* Assets.xcassets in Resources */,
 				18A751D528DC256100554637 /* HomeViewController.xib in Resources */,
 			);
@@ -627,6 +653,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18A7521128DCBF0100554637 /* Constants.swift in Sources */,
+				18EA7EF228E0453A00610014 /* ImageVCComposer.swift in Sources */,
 				18A751F128DC539600554637 /* ApodParser.swift in Sources */,
 				18A751D728DC310D00554637 /* HomeVCViewModel.swift in Sources */,
 				18A751E528DC3F7600554637 /* NibViewController.swift in Sources */,
@@ -636,6 +663,7 @@
 				18A7520C28DC6E4300554637 /* AppSetup.swift in Sources */,
 				18A751F928DC543E00554637 /* AlertBehavior.swift in Sources */,
 				189B356428DB347900DA8F26 /* NASA_APOD.xcdatamodeld in Sources */,
+				18EA7EEE28E02F8E00610014 /* ImageViewController.swift in Sources */,
 				18A7521328DCCCFB00554637 /* LoadingBehavior.swift in Sources */,
 				18A7520528DC6CAB00554637 /* Configurator.swift in Sources */,
 				18A7520E28DC96B600554637 /* Endpoint.swift in Sources */,
