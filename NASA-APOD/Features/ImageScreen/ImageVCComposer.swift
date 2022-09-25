@@ -9,8 +9,10 @@ import Foundation
 import UIKit
 
 struct ImageVCComposer{
+    /**
+        This function composes ImageViewController screen.
+     */
     static func makeImageViewController(imageUrlStr: String) -> (UIViewController){
-        
         let vc = ImageViewController(imageUrlStr: imageUrlStr)
         return vc
     }

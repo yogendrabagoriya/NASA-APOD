@@ -38,6 +38,8 @@ class HomeViewController: NibViewController {
         super.viewDidLoad()
         
         self.spodIV.delegate = self
+        
+        // Setting max date, because we have to block user from selecting future dates.
         datePicker.maximumDate = Date()
         
         // Fetching today's SPOD from server.
@@ -52,20 +54,30 @@ class HomeViewController: NibViewController {
     
     //MARK: - Private methods
     
+    /**
+        This function updates Screen elements based on apod paramter
+     */
     private func loadUI(by apod: Apod){
         self.titileL.text = apod.title
         self.dateL.text = apod.date
         self.explanationTV.text = apod.explanation
     }
     
-    // Navigation related methods
+    /**
+        This function used to configure navigation controller
+     */
     private func configureNavigation(){
         navigationItem.title = "APOD"
         navigationController?.navigationBar.backgroundColor = .systemGray5
     }
     
+    /**
+        This function called when date picker disappear.
+        Selected date is passed to API to fetch SPOD of particular date.
+        It skippes API call if user selectes same date again.
+     */
     @IBAction func datePickerAction(sender: UIDatePicker){
-        print(sender.date)
+        
         if selectedDate != sender.date{
             selectedDate = sender.date
             let dateFormatter = DateFormatter()
@@ -78,6 +90,10 @@ class HomeViewController: NibViewController {
     }
 }
 
+
+/**
+    This extension used for LazyImageViewDelegate callbacks handler
+ */
 extension HomeViewController: LazyImageViewDelegate{
     func userTapAction() {
         if let imageUrl = self.apod?.hdurl{
@@ -89,10 +105,18 @@ extension HomeViewController: LazyImageViewDelegate{
     }
 }
 
+/**
+    This extension have function called from ViewModel class.
+ */
 extension HomeViewController: HomeVCPresenter{
+    /**
+     Called when APOD API returns success
+     */
     func apodHandler(apod: Apod){
+        // Update apod varible from newly fetched object
         self.apod = apod
-
+        
+        // Updating UI on main thread.
         main.async {
             self.hideLoading()
             self.loadUI(by: apod)
@@ -100,6 +124,9 @@ extension HomeViewController: HomeVCPresenter{
         }
     }
     
+    /**
+     Called when APOD API failed.
+     */
     func failureHandler(info: AlertInfo) {
         main.async {
             self.hideLoading()

@@ -10,6 +10,11 @@ import UIKit
 
 struct HomeVCComposer{
     
+    /**
+        This method coposed HomeViewController.
+        It configures NetworkManager, GSApodAPI, HomeVCViewModel and HomeViewController.
+        HomeViewController having dependecy of HomeVCViewModel that confirms HomeVCViewModelProtocol protocol
+     */
     static func makeHomeVC() -> (UIViewController) {
         let manager = NetworkManager(session: .shared)
         let parser = GSApodParser()

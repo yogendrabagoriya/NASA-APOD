@@ -13,7 +13,9 @@ protocol AlertBehavior{
     func showAlert(title: String, message: String?, okBtnText: String)
 }
 
-
+/**
+    This protocol showing alert
+ */
 extension AlertBehavior where Self : UIViewController{
     
     func showAlert(alertInfo: AlertInfo){

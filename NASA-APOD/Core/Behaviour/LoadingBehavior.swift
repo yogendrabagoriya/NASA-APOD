@@ -9,6 +9,9 @@ import Foundation
 import UIKit
 import NVActivityIndicatorView
 
+/**
+    This protocol confirms showing loading
+ */
 protocol LoadingBehavior : NVActivityIndicatorViewable{
     func showLoading()
     func hideLoading()

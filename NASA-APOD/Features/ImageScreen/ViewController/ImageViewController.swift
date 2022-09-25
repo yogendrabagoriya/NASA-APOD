@@ -8,12 +8,17 @@
 import Foundation
 import UIKit
 
+/**
+    This class is used to handle HD image.
+    This Loades image from specific image url.
+ */
 class ImageViewController: NibViewController{
     
     @IBOutlet private weak var imageView: LazyImageView!
     
     private var imageUrlStr: String
     
+    //MARK: - Life cycle methods
     init(imageUrlStr: String){
         self.imageUrlStr = imageUrlStr
         super.init()
@@ -29,7 +34,8 @@ class ImageViewController: NibViewController{
         self.imageView.loadImage(from: imageUrlStr, placeholderImage: "nasa")
     }
     
-    func configureNavigation(){
+    //MARK: - Priavte methods
+    private func configureNavigation(){
         navigationController?.navigationBar.backgroundColor = .systemGray5
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonTapAction))
     }

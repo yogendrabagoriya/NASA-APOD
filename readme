@@ -1,1 +1,8 @@
+We are using Cocopods for dependency handling.
+So to use this sample first we have to install dependency.
+You would requires to simply run below command on terminal at project location.
 
+pod install
+
+
+Above command will download depency. The you have to reach in project location and need to open file with name 'NASA-APOD.xcworkspace'.
